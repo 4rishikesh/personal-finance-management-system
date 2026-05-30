@@ -1,10 +1,15 @@
 const express = require("express");
 const Budget = require("../models/Budget");
-const authMiddleware = require("../middleware/authMiddleware");
 const Transaction = require("../models/Transaction");
 const transporter = require("../services/emailService");
-const router = express.Router();
+const User = require("../models/User");
+const {
+  sendBudgetAlert
+} = require("../services/emailService");
 
+const authMiddleware = require("../middleware/authMiddleware");
+
+const router = express.Router();
 
 router.post("/", authMiddleware, async (req, res) => {
   try {
@@ -118,6 +123,14 @@ router.get("/alerts", authMiddleware, async (req, res) => {
         (spent / budget.limit) * 100;
 
       if (usagePercent >= 90) {
+        const user = await User.findById(req.userId);  
+
+        await sendBudgetAlert(
+          user.email,
+          budget.category,
+          spent,
+          budget.limit
+        );
 
         alerts.push({
           category: budget.category,
@@ -147,27 +160,6 @@ router.get("/alerts", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/test-email", async (req, res) => {
-  try {
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: "Finance Manager Test",
-      text: "Email service is working successfully."
-    });
-
-    res.json({
-      message: "Email sent successfully"
-    });
-
-  } catch (error) {
-
-    res.status(500).json({
-      error: error.message
-    });
-
-  }
-});
 
 module.exports = router;

@@ -6,12 +6,14 @@ const authRoutes = require("./routes/authRoutes");
 const transactionRoutes = require("./routes/transactionRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
 const budgetRoutes = require("./routes/budgetRoutes");
-
+const startBudgetAlertJob =
+  require("./jobs/budgetAlertJob");
+  
 const app = express();
 
 connectDB(); 
 
-
+startBudgetAlertJob();
 // Middleware
 app.use(cors());
 app.use(express.json());

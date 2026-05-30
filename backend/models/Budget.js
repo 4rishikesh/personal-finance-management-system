@@ -16,6 +16,11 @@ const budgetSchema = new mongoose.Schema({
   limit: {
     type: Number,
     required: true
+  },
+  
+  lastAlertSent: {
+    type: Date,
+    default: null
   }
 
 });
