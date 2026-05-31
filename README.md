@@ -1,84 +1,131 @@
-# Personal Finance Management System
+# FinanceFlow — AI-Powered Personal Finance Manager
 
-A full-stack web application designed to help users manage their personal finances by tracking income, expenses, and analyzing spending patterns through an interactive dashboard.
+A full-stack personal finance management platform with local AI insights, automated budget alerts, and financial runway prediction.
 
----
+## Features
 
-## Tech Stack
+- **JWT Authentication** — Secure register/login with bcrypt password hashing
+- **Transaction Management** — Add, view, and delete income/expense transactions with auto-categorization
+- **Budget Tracking** — Set per-category spending limits with real-time progress monitoring
+- **Financial Runway Prediction** — Calculates how many days your current balance will last based on spending patterns, with actionable recommendations
+- **AI-Powered Insights** — Local AI analysis using Ollama (Llama 3.2) — no API keys, no cost, no internet required
+- **Auto-Categorization** — AI automatically suggests transaction categories from natural language descriptions
+- **Automated Email Alerts** — Node-cron scheduled job sends budget warning emails when spending exceeds 90% of limit (with 24-hour deduplication)
+- **Financial Health Score** — Composite score based on savings rate, runway, and budget adherence
+- **Analytics Dashboard** — Monthly trend area charts, expense breakdown pie chart, category analysis
+- **Dark/Light Mode** — System-aware theme with smooth transitions
 
-### Frontend
-- React
-- HTML
-- CSS
-- JavaScript
+## 🛠 Tech Stack
+
+**Backend**
+- Node.js + Express
+- MongoDB Atlas + Mongoose
+- JWT Authentication
+- Nodemailer + Gmail SMTP
+- Node-cron (scheduled jobs)
+- bcrypt
+
+**Frontend**
+- React 18 + Vite
+- Recharts (area charts, pie charts)
+- React Router v6
+- Axios
+- react-countup (animated counters)
+- CSS custom properties (theme system)
+
+**AI**
+- Ollama (local inference)
+- Llama 3.2 (3B model)
+- Runs entirely on-device — no external API calls
+
+## Setup
+
+### Prerequisites
+- Node.js 18+
+- MongoDB Atlas account
+- Ollama installed (`ollama.com`)
 
 ### Backend
-- Node.js
-- Express.js
+```bash
+cd backend
+npm install
+```
 
-### Database
-- MongoDB
+Create `.env`:
+```
+MONGO_URI=your_mongodb_atlas_uri
+JWT_SECRET=your_jwt_secret
+EMAIL_USER=your_gmail@gmail.com
+EMAIL_PASS=your_gmail_app_password
+PORT=5000
+```
 
-### Authentication & Security
-- JWT (JSON Web Tokens) for secure authentication
-- Password hashing using bcrypt
-- Protected API routes
+```bash
+npm run dev
+```
 
----
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-## Core Features
+### AI (Ollama)
+```bash
+ollama pull llama3.2
+OLLAMA_ORIGINS="*" ollama serve
+```
 
-### User Authentication
-- User registration and login
-- Passwords securely hashed before storing in the database
-- JWT-based authentication for protected routes
-- Secure user sessions
+## Architecture
 
-### Transaction Management
-- Add income and expense transactions
-- Edit and delete transactions
-- Store transaction details including:
-  - amount
-  - category
-  - date
-  - description
+```
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────┐
+│   React Frontend │────▶│  Express Backend  │────▶│ MongoDB Atlas│
+│   (Vite + CSS)  │     │  (Node.js + JWT)  │     │             │
+└────────┬────────┘     └──────────────────┘     └─────────────┘
+         │                        │
+         │              ┌─────────▼────────┐
+         │              │   Node-Cron Job   │
+         │              │  (Budget Alerts)  │
+         │              └──────────────────┘
+         │
+┌────────▼────────┐
+│  Ollama / Llama  │
+│  (Local AI)     │
+└─────────────────┘
+```
 
-### Category-wise Expense Tracking
-Transactions categorized into groups such as:
-- Food
-- Travel
-- Events
-- Miscellaneous
+## Key Technical Decisions
 
-Users can easily view their spending per category.
+- **Local AI over cloud APIs** — Ollama runs Llama 3.2 on-device, eliminating API costs and rate limits
+- **Cron-based alerts** — Budget monitoring runs as a background service independent of user sessions
+- **JWT with 7-day expiry** — Stateless authentication with automatic token refresh on login
+- **CSS custom properties** — Theme system uses native CSS variables for instant dark/light switching without re-renders
 
-### Financial Dashboard
-Interactive dashboard displaying:
-- Total income
-- Total expenses
-- Remaining balance
-- Category-wise spending distribution
+## Project Structure
 
-### Spending Analytics
-- Expense analysis for the last 30 days
-- Category-wise spending visualization
-- Highest spending category highlighted
+```
+finance-management-system/
+├── backend/
+│   ├── config/          # MongoDB connection
+│   ├── jobs/            # node-cron budget alert scheduler
+│   ├── middleware/       # JWT auth middleware
+│   ├── models/          # Mongoose schemas
+│   ├── routes/          # Express API routes
+│   ├── services/        # Email service (Nodemailer)
+│   └── server.js
+└── frontend/
+    ├── src/
+    │   ├── components/  # Reusable UI components
+    │   ├── context/     # React context (Auth, Theme)
+    │   ├── pages/       # Route-level components
+    │   ├── routes/      # Protected routing
+    │   └── services/    # API + AI service layer
+    └── vite.config.js
+```
 
-### Data Visualization
-Charts and graphs for:
-- Monthly spending trends
-- Category distribution
-- Expense insights
+## Author
 
----
-
-## Future Enhancements
-- Budget limits and spending alerts
-- AI-based spending insights
-- Export financial reports
-- Mobile responsive improvements
-
----
-
-## Project Goal
-To build a secure and user-friendly financial management system that helps users track, manage, and analyze their spending habits effectively.
+Rishikesh R. Mahato — B.Tech CSE, NIT Warangal  
+GitHub: [@4rishikesh](https://github.com/4rishikesh)

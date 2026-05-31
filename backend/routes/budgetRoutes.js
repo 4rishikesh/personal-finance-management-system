@@ -79,6 +79,7 @@ router.get("/status", authMiddleware, async (req, res) => {
       ).toFixed(2);
 
       result.push({
+        _id: budget._id, 
         category: budget.category,
         limit: budget.limit,
         spent,
@@ -160,6 +161,21 @@ router.get("/alerts", authMiddleware, async (req, res) => {
   }
 });
 
+router.delete("/:id", authMiddleware, async (req, res) => {
+  try {
+    const budget = await Budget.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.userId,
+    });
 
+    if (!budget) {
+      return res.status(404).json({ message: "Budget not found" });
+    }
+
+    res.json({ message: "Budget deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}); 
 
 module.exports = router;
