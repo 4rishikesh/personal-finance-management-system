@@ -2,10 +2,10 @@ import { useState } from "react";
 import { getGeminiInsights } from "../../services/geminiService";
 
 const typeStyle = {
-  warning: { bg: "rgba(245,158,11,0.1)",  border: "rgba(245,158,11,0.25)", text: "#f59e0b", icon: "⚠️" },
-  alert:   { bg: "rgba(239,68,68,0.1)",   border: "rgba(239,68,68,0.25)",  text: "#ef4444", icon: "🚨" },
-  success: { bg: "rgba(34,197,94,0.1)",   border: "rgba(34,197,94,0.25)",  text: "#22c55e", icon: "✅" },
-  tip:     { bg: "rgba(37,99,235,0.1)",   border: "rgba(37,99,235,0.25)",  text: "#60a5fa", icon: "💡" },
+  warning: { bg: "rgba(245,158,11,0.1)",  border: "rgba(245,158,11,0.25)", text: "#f59e0b", icon: "" },
+  alert:   { bg: "rgba(239,68,68,0.1)",   border: "rgba(239,68,68,0.25)",  text: "#ef4444", icon: "" },
+  success: { bg: "rgba(34,197,94,0.1)",   border: "rgba(34,197,94,0.25)",  text: "#22c55e", icon: "" },
+  tip:     { bg: "rgba(37,99,235,0.1)",   border: "rgba(37,99,235,0.25)",  text: "#60a5fa", icon: "" },
 };
 
 function InsightCard({ insight, delay }) {
@@ -87,7 +87,7 @@ export default function AIInsights({ financialData }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
         <div>
           <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)", display: "flex", alignItems: "center", gap: 8 }}>
-            ✨ AI Financial Insights
+            AI Financial Insights
             <span style={{
               fontSize: 10, background: "rgba(124,58,237,0.15)", color: "#a78bfa",
               padding: "2px 8px", borderRadius: 99,
@@ -147,12 +147,12 @@ export default function AIInsights({ financialData }) {
           border: "1px dashed var(--border)", borderRadius: 12,
           color: "var(--muted)",
         }}>
-          <div style={{ fontSize: 36, marginBottom: 10 }}>🤖</div>
+          <div style={{ fontSize: 36, marginBottom: 10 }}></div>
           <div style={{ fontSize: 14, fontWeight: 500, color: "var(--text)", marginBottom: 6 }}>
             Local AI ready
           </div>
           <div style={{ fontSize: 13 }}>
-            Powered by Ollama running on your machine — no internet, no API key, completely free.
+            Powered by Ollama running on your machine - no internet, no API key, completely free.
           </div>
         </div>
       )}

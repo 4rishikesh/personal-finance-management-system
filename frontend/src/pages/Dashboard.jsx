@@ -549,9 +549,9 @@ export default function Dashboard() {
               lineHeight: 1.5,
             }}
           >
-            💡{" "}
+            {" "}
             {savings >= 0
-              ? `You're saving ₹${savings.toLocaleString()} — keep it up!`
+              ? `You're saving ₹${savings.toLocaleString()} - keep it up!`
               : `Add income entries to track your savings rate accurately.`}
           </div>
         </div>

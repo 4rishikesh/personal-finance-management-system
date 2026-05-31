@@ -33,15 +33,9 @@ export default function RunwayInsight({ summary, runway, budgetStatus }) {
       position: "relative",
       overflow: "hidden",
     }}>
-      {/* Decorative background */}
-      <div style={{
-        position: "absolute", right: -20, top: -20,
-        width: 160, height: 160, borderRadius: "50%",
-        background: riskBg, pointerEvents: "none",
-      }} />
 
       <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)", marginBottom: 20, display: "flex", alignItems: "center", gap: 8 }}>
-        🛣️ Financial Runway
+        Financial Runway
       </div>
 
       {/* Main metrics row */}
@@ -97,7 +91,7 @@ export default function RunwayInsight({ summary, runway, budgetStatus }) {
           padding: "16px 18px",
         }}>
           <div style={{ fontSize: 12, fontWeight: 600, color: "#60a5fa", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
-            💡 Runway Recommendation
+            Runway Recommendation
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
@@ -124,7 +118,7 @@ export default function RunwayInsight({ summary, runway, budgetStatus }) {
 
           {balance <= 0 && (
             <div style={{ marginTop: 12, fontSize: 12, color: "#f59e0b", padding: "8px 12px", background: "rgba(245,158,11,0.08)", borderRadius: 8 }}>
-              ⚠️ Your balance is negative. Add income transactions to track runway accurately.
+              Your balance is negative. Add income transactions to track runway accurately.
             </div>
           )}
         </div>
