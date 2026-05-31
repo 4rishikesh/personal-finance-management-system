@@ -42,11 +42,11 @@ export default function Register() {
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           <div>
             <label style={{ color: "var(--muted)", fontSize: 13, display: "block", marginBottom: 6 }}>Full name</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Rishikesh" style={{ width: "100%", background: "var(--bg)", border: "1px solid var(--border)", borderRadius: 8, padding: "10px 12px", color: "var(--text)", fontSize: 14, boxSizing: "border-box", outline: "none" }} />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Username" style={{ width: "100%", background: "var(--bg)", border: "1px solid var(--border)", borderRadius: 8, padding: "10px 12px", color: "var(--text)", fontSize: 14, boxSizing: "border-box", outline: "none" }} />
           </div>
           <div>
             <label style={{ color: "var(--muted)", fontSize: 13, display: "block", marginBottom: 6 }}>Email</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="you@example.com" style={{ width: "100%", background: "var(--bg)", border: "1px solid var(--border)", borderRadius: 8, padding: "10px 12px", color: "var(--text)", fontSize: 14, boxSizing: "border-box", outline: "none" }} />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="user@gmail.com" style={{ width: "100%", background: "var(--bg)", border: "1px solid var(--border)", borderRadius: 8, padding: "10px 12px", color: "var(--text)", fontSize: 14, boxSizing: "border-box", outline: "none" }} />
           </div>
           <div>
             <label style={{ color: "var(--muted)", fontSize: 13, display: "block", marginBottom: 6 }}>Password</label>
