@@ -6,6 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 const transactionRoutes = require("./routes/transactionRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
 const budgetRoutes = require("./routes/budgetRoutes");
+const aiRoutes = require("./routes/aiRoutes");
 const startBudgetAlertJob =
   require("./jobs/budgetAlertJob");
   
@@ -22,6 +23,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/budgets", budgetRoutes);
+app.use("/api/ai", aiRoutes);
 
 // Test API
 app.get("/", (req, res) => {
