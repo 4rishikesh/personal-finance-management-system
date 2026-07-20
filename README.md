@@ -15,7 +15,7 @@ A full-stack personal finance management platform with local AI insights, automa
 - **Analytics Dashboard** - Monthly trend area charts, expense breakdown pie chart, category analysis
 - **Dark/Light Mode** - System-aware theme with smooth transitions
 
-## 🛠 Tech Stack
+## Tech Stack
 
 **Backend**
 - Node.js + Express
