@@ -63,51 +63,33 @@
 
 // module.exports = { callOllama };
 
-const OLLAMA_URL =
-  process.env.OLLAMA_URL || "https://ollama.com/api/generate";
+const Groq = require("groq-sdk");
+
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
+});
 
 const callOllama = async (prompt) => {
   try {
-    const response = await fetch(OLLAMA_URL, {
-      method: "POST",
+    const completion = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
 
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OLLAMA_API_KEY}`,
-      },
-
-      body: JSON.stringify({
-        model: "gpt-oss:120b",
-        prompt,
-        stream: false,
-        options: {
-          temperature: 0.7,
-          num_predict: 800,
+      messages: [
+        {
+          role: "user",
+          content: prompt,
         },
-      }),
+      ],
+
+      temperature: 0.7,
+      max_tokens: 800,
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
+    return completion.choices[0].message.content.trim();
 
-      console.error("========== OLLAMA ERROR ==========");
-      console.error("Status:", response.status);
-      console.error("Response:", errorText);
-      console.error("URL:", OLLAMA_URL);
-      console.error("API key exists:", !!process.env.OLLAMA_API_KEY);
-      console.error("===================================");
-
-      throw new Error(`Ollama request failed: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    console.log("Ollama response received successfully");
-
-    return data.response?.trim() || "";
   } catch (error) {
-    console.error("Ollama service error:", error.message);
-    throw error;
+    console.error("Groq Error:", error.message);
+    throw new Error("Groq AI request failed");
   }
 };
 
