@@ -54,6 +54,7 @@ const startBudgetAlertJob = require("./jobs/budgetAlertJob");
 const app = express();
 
 connectDB();
+
 if (process.env.NODE_ENV !== "production") {
   startBudgetAlertJob();
 }
@@ -81,7 +82,14 @@ app.get("/", (req, res) => {
   res.send("FinanceFlow API is running");
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Start server locally
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
