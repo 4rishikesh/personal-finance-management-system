@@ -30,37 +30,40 @@
 // module.exports = { callOllama };
 
 const OLLAMA_URL =
-  process.env.OLLAMA_URL || "http://localhost:11434/api/generate";
+  process.env.OLLAMA_URL || "https://ollama.com/api/chat";
 
 const callOllama = async (prompt) => {
   const response = await fetch(OLLAMA_URL, {
     method: "POST",
+
     headers: {
       "Content-Type": "application/json",
-      ...(process.env.OLLAMA_API_KEY && {
-        Authorization: `Bearer ${process.env.OLLAMA_API_KEY}`,
-      }),
+      Authorization: `Bearer ${process.env.OLLAMA_API_KEY}`,
     },
+
     body: JSON.stringify({
-      model: process.env.OLLAMA_MODEL || "gpt-oss:120b",
-      prompt,
+      model: process.env.OLLAMA_MODEL || "gpt-oss:20b",
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
       stream: false,
-      options: {
-        temperature: 0.7,
-        num_predict: 800,
-      },
     }),
   });
 
   if (!response.ok) {
     const errorText = await response.text();
-    console.error("Ollama error:", errorText);
-    throw new Error("Ollama request failed");
+
+    console.error("OLLAMA ERROR:", response.status, errorText);
+
+    throw new Error(`Ollama request failed: ${response.status}`);
   }
 
   const data = await response.json();
 
-  return data.response?.trim() || "";
+  return data.message?.content?.trim() || "";
 };
 
 module.exports = { callOllama };
