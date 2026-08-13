@@ -170,7 +170,7 @@ export default function AIInsights({ financialData }) {
         }}>
           <strong>Error:</strong> {error}
           <div style={{ marginTop: 8, fontSize: 12, color: "var(--muted)" }}>
-            Make sure Ollama is running: open a terminal and run <code style={{ background: "var(--bg)", padding: "1px 6px", borderRadius: 4 }}>ollama serve</code>
+            Ollama server cannot be reached <code style={{ background: "var(--bg)", padding: "1px 6px", borderRadius: 4 }}>ollama serve</code>
           </div>
         </div>
       )}
