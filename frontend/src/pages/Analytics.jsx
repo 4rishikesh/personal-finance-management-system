@@ -102,7 +102,7 @@ export default function Analytics() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
           gap: 14,
           marginBottom: 24,
         }}
@@ -138,7 +138,7 @@ export default function Analytics() {
         ))}
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "3fr 2fr", gap: 14 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 14 }}>
         <div
           style={{
             background: "var(--surface)",

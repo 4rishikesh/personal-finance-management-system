@@ -39,7 +39,7 @@ export default function RunwayInsight({ summary, runway, budgetStatus }) {
       </div>
 
       {/* Main metrics row */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14, marginBottom: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 14, marginBottom: 20 }}>
         {[
           { label: "Current Balance", value: `₹${Math.abs(balance).toLocaleString()}`, color: balance >= 0 ? "#22c55e" : "#ef4444" },
           { label: "Avg. Daily Spend", value: `₹${Math.round(avgDaily).toLocaleString()}`, color: "var(--text)" },

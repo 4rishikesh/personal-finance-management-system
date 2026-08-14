@@ -28,7 +28,7 @@ export default function Login() {
 
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 16, padding: "40px 36px", width: 380 }}>
+      <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 16, padding: "40px 36px", width: "min(380px, 90vw)"}}>
         <h1 style={{ color: "var(--text)", fontSize: 22, fontWeight: 600, marginBottom: 4 }}>FinanceFlow</h1>
         <p style={{ color: "var(--muted)", fontSize: 14, marginBottom: 28 }}>Sign in to your account</p>
 

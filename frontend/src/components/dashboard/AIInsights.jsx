@@ -86,7 +86,7 @@ function InsightCard({ insight, delay }) {
 
 function LoadingState() {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 12 }}>
       {[0, 1, 2, 3].map((i) => (
         <div
           key={i}
