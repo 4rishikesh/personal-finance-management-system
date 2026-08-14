@@ -64,3 +64,69 @@ body.light-mode {
 .fade-in {
   animation: fadeIn 0.4s ease forwards;
 }
+
+
+/*  Responsive layout  */
+:root {
+  --mobile-tab-height: 0px;
+}
+
+/* Desktop: show sidebar, hide mobile tabs */
+.desktop-sidebar {
+  display: flex !important;
+}
+
+.mobile-tabs {
+  display: none !important;
+}
+
+/* Mobile: hide sidebar, show bottom tabs */
+@media (max-width: 768px) {
+  :root {
+    --mobile-tab-height: 60px;
+  }
+
+  .desktop-sidebar {
+    display: none !important;
+  }
+
+  .mobile-tabs {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+  }
+
+  .main-content {
+    padding: 14px !important;
+  }
+
+  /* Hero balance card full width */
+  .hero-balance {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+/* Tablet tweaks */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .main-content {
+    padding: 16px !important;
+  }
+}
+
+/* Table horizontal scroll on mobile */
+table {
+  min-width: 600px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}

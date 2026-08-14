@@ -55,7 +55,7 @@ function DashboardSkeleton() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr",
+          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
           gap: 14,
           marginBottom: 14,
         }}
@@ -67,7 +67,7 @@ function DashboardSkeleton() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4,1fr)",
+          gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
           gap: 14,
           marginBottom: 24,
         }}

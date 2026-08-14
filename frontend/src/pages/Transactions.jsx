@@ -365,97 +365,103 @@ export default function Transactions() {
             No transactions yet. Add your first one above.
           </div>
         ) : (
-          <table
-            style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}
-          >
-            <thead>
-              <tr style={{ borderBottom: "1px solid var(--border)" }}>
-                {[
-                  "Date",
-                  "Type",
-                  "Category",
-                  "Account",
-                  "Note",
-                  "Amount",
-                  "",
-                ].map((h) => (
-                  <th
-                    key={h}
-                    style={{
-                      padding: "12px 16px",
-                      textAlign: "left",
-                      color: "var(--muted)",
-                      fontWeight: 500,
-                      fontSize: 12,
-                    }}
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {transactions.map((t) => (
-                <tr
-                  key={t._id}
-                  style={{ borderBottom: "1px solid var(--border)" }}
-                >
-                  <td style={{ padding: "12px 16px", color: "var(--muted)" }}>
-                    {new Date(t.date).toLocaleDateString()}
-                  </td>
-                  <td style={{ padding: "12px 16px" }}>
-                    <span
+          <div className="table-wrapper">
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                fontSize: 13,
+              }}
+            >
+              <thead>
+                <tr style={{ borderBottom: "1px solid var(--border)" }}>
+                  {[
+                    "Date",
+                    "Type",
+                    "Category",
+                    "Account",
+                    "Note",
+                    "Amount",
+                    "",
+                  ].map((h) => (
+                    <th
+                      key={h}
                       style={{
-                        background:
-                          t.type === "income"
-                            ? "rgba(34,197,94,0.12)"
-                            : "rgba(239,68,68,0.12)",
-                        color: t.type === "income" ? "#22c55e" : "#ef4444",
-                        padding: "2px 8px",
-                        borderRadius: 99,
-                        fontSize: 11,
-                      }}
-                    >
-                      {t.type}
-                    </span>
-                  </td>
-                  <td style={{ padding: "12px 16px", color: "var(--text)" }}>
-                    {t.category}
-                  </td>
-                  <td style={{ padding: "12px 16px", color: "var(--muted)" }}>
-                    {t.account}
-                  </td>
-                  <td style={{ padding: "12px 16px", color: "var(--muted)" }}>
-                    {t.note || "—"}
-                  </td>
-                  <td
-                    style={{
-                      padding: "12px 16px",
-                      fontWeight: 500,
-                      color: t.type === "income" ? "#22c55e" : "#ef4444",
-                    }}
-                  >
-                    {t.type === "income" ? "+" : "-"}₹
-                    {Number(t.amount).toLocaleString()}
-                  </td>
-                  <td style={{ padding: "12px 16px" }}>
-                    <button
-                      onClick={() => handleDelete(t._id)}
-                      style={{
-                        background: "transparent",
-                        border: "none",
+                        padding: "12px 16px",
+                        textAlign: "left",
                         color: "var(--muted)",
-                        cursor: "pointer",
-                        fontSize: 16,
+                        fontWeight: 500,
+                        fontSize: 12,
                       }}
                     >
-                      ✕
-                    </button>
-                  </td>
+                      {h}
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {transactions.map((t) => (
+                  <tr
+                    key={t._id}
+                    style={{ borderBottom: "1px solid var(--border)" }}
+                  >
+                    <td style={{ padding: "12px 16px", color: "var(--muted)" }}>
+                      {new Date(t.date).toLocaleDateString()}
+                    </td>
+                    <td style={{ padding: "12px 16px" }}>
+                      <span
+                        style={{
+                          background:
+                            t.type === "income"
+                              ? "rgba(34,197,94,0.12)"
+                              : "rgba(239,68,68,0.12)",
+                          color: t.type === "income" ? "#22c55e" : "#ef4444",
+                          padding: "2px 8px",
+                          borderRadius: 99,
+                          fontSize: 11,
+                        }}
+                      >
+                        {t.type}
+                      </span>
+                    </td>
+                    <td style={{ padding: "12px 16px", color: "var(--text)" }}>
+                      {t.category}
+                    </td>
+                    <td style={{ padding: "12px 16px", color: "var(--muted)" }}>
+                      {t.account}
+                    </td>
+                    <td style={{ padding: "12px 16px", color: "var(--muted)" }}>
+                      {t.note || "—"}
+                    </td>
+                    <td
+                      style={{
+                        padding: "12px 16px",
+                        fontWeight: 500,
+                        color: t.type === "income" ? "#22c55e" : "#ef4444",
+                      }}
+                    >
+                      {t.type === "income" ? "+" : "-"}₹
+                      {Number(t.amount).toLocaleString()}
+                    </td>
+                    <td style={{ padding: "12px 16px" }}>
+                      <button
+                        onClick={() => handleDelete(t._id)}
+                        style={{
+                          background: "transparent",
+                          border: "none",
+                          color: "var(--muted)",
+                          cursor: "pointer",
+                          fontSize: 16,
+                        }}
+                      >
+                        ✕
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </Layout>

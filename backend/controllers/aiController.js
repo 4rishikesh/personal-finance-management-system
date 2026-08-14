@@ -11,8 +11,8 @@ const getInsights = async (req, res) => {
       .map(
         (b) =>
           `${b.category}: spent ₹${b.spent} of ₹${b.limit} (${Math.round(
-            (b.spent / b.limit) * 100
-          )}%)`
+            (b.spent / b.limit) * 100,
+          )}%)`,
       )
       .join("\n");
 
@@ -21,7 +21,7 @@ const getInsights = async (req, res) => {
         ? Math.round(
             ((summary.totalIncome - summary.totalExpense) /
               summary.totalIncome) *
-              100
+              100,
           )
         : 0;
 
